@@ -12,17 +12,21 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
         # Qt build tools
         file \
         # Qt libs
-        libatspi2.0-dev libdbus-1-dev libfontconfig1-dev libfreetype6-dev libgl1-mesa-dev libwayland-dev libxkbcommon-x11-dev \
+        libatspi2.0-dev libdbus-1-dev libfontconfig1-dev libfreetype6-dev libgl1-mesa-dev libwayland-dev \
+        libx11-xcb-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-keysyms1-dev libxcb-randr0-dev libxcb-render0-dev libxcb-render-util0-dev libxcb-shape0-dev libxcb-shm0-dev libxcb-sync-dev libxcb-xfixes0-dev libxcb-xinerama0-dev libxkbcommon-dev libxkbcommon-x11-dev \
+        # Red Panda C++
+        git \
         # appimage tools
         squashfs-tools && \
     apt clean && \
     rm -rf /var/lib/apt/lists/*
 
-ARG QT_MAJOR_MINOR=5.12
+ENV PATH=/opt/qt/bin:${PATH}
+
+ARG QT_MAJOR_MINOR=5.15
 ARG QT_PATCH=12
 ARG QT_VERSION=${QT_MAJOR_MINOR}.${QT_PATCH}
 ARG FCITX5_QT_VERSION=5.0.17
-ARG ALACRITTY_VERSION=0.12.2
 
 # AppImage runtime
 RUN curl -L -o /opt/appimage-runtime 'https://github.com/cyano-linux/appimage-riscv64/releases/download/20230808.0/runtime-riscv64'
@@ -30,34 +34,40 @@ RUN curl -L -o /opt/appimage-runtime 'https://github.com/cyano-linux/appimage-ri
 # Qt 5
 RUN mkdir -p /build/qt5 && \
     cd /build/qt5 && \
-    curl -O "https://download.qt.io/archive/qt/${QT_MAJOR_MINOR}/${QT_VERSION}/submodules/qt{base,svg,tools,wayland}-everywhere-src-${QT_VERSION}.tar.xz" && \
-    tar xf qtbase-everywhere-src-${QT_VERSION}.tar.xz && \
+    curl -L -O "https://download.qt.io/archive/qt/${QT_MAJOR_MINOR}/${QT_VERSION}/submodules/qt{base,svg,tools,wayland}-everywhere-opensource-src-${QT_VERSION}.tar.xz" && \
+    tar xf qtbase-everywhere-opensource-src-${QT_VERSION}.tar.xz && \
     cd qtbase-everywhere-src-${QT_VERSION} && \
     ./configure \
-        -prefix /usr/local \
+        -prefix /opt/qt \
         -opensource -confirm-license \
-        -optimize-size -no-shared -static -platform linux-g++ -no-use-gold-linker \
-        -qt-zlib -qt-doubleconversion -iconv -no-icu -qt-pcre -no-openssl -system-freetype -fontconfig -qt-harfbuzz -qt-libjpeg -qt-libpng -qt-xcb -qt-sqlite \
-        -nomake examples -nomake tests -nomake tools && \
+        -optimize-size -static -platform linux-g++ -linker bfd \
+        -nomake examples -nomake tests -nomake tools -dbus-linked \
+        -qt-doubleconversion -no-glib -eventfd -inotify -iconv -no-icu -no-mimetype-database -qt-pcre -qt-zlib \
+        -no-openssl \
+        -no-cups -fontconfig -system-freetype -qt-harfbuzz -no-gtk -no-opengl -xcb-xlib \
+        -xcb \
+        -bundled-xcb-xinput \
+        -qt-libjpeg -qt-libpng \
+        -sql-sqlite -qt-sqlite && \
     make -j$(nproc) && \
     make install && \
     # svg package
     cd /build/qt5 && \
-    tar xf qtsvg-everywhere-src-${QT_VERSION}.tar.xz && \
+    tar xf qtsvg-everywhere-opensource-src-${QT_VERSION}.tar.xz && \
     cd qtsvg-everywhere-src-${QT_VERSION} && \
     qmake . && \
     make -j$(nproc) && \
     make install && \
     # tools package
     cd /build/qt5 && \
-    tar xf qttools-everywhere-src-${QT_VERSION}.tar.xz && \
+    tar xf qttools-everywhere-opensource-src-${QT_VERSION}.tar.xz && \
     cd qttools-everywhere-src-${QT_VERSION} && \
     qmake . && \
     make -j$(nproc) && \
     make install && \
     # wayland package
     cd /build/qt5 && \
-    tar xf qtwayland-everywhere-src-${QT_VERSION}.tar.xz && \
+    tar xf qtwayland-everywhere-opensource-src-${QT_VERSION}.tar.xz && \
     cd qtwayland-everywhere-src-${QT_VERSION} && \
     qmake . && \
     make -j$(nproc) && \
@@ -76,7 +86,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     curl -L -o fcitx5-qt-${FCITX5_QT_VERSION}.tar.gz "https://github.com/fcitx/fcitx5-qt/archive/refs/tags/${FCITX5_QT_VERSION}.tar.gz" && \
     tar xf fcitx5-qt-${FCITX5_QT_VERSION}.tar.gz && \
     cd fcitx5-qt-${FCITX5_QT_VERSION} && \
-    cmake . -Bbuild -DCMAKE_MODULE_PATH=/usr/local/lib/cmake -DCMAKE_PREFIX_PATH=/usr/local -DCMAKE_BUILD_TYPE=Release -DENABLE_QT4=Off -DENABLE_QT5=On -DENABLE_QT6=Off -DBUILD_ONLY_PLUGIN=On -DBUILD_STATIC_PLUGIN=On && \
+    cmake . -Bbuild -DCMAKE_MODULE_PATH=/opt/qt/lib/cmake -DCMAKE_PREFIX_PATH=/opt/qt -DCMAKE_BUILD_TYPE=Release -DENABLE_QT4=Off -DENABLE_QT5=On -DENABLE_QT6=Off -DBUILD_ONLY_PLUGIN=On -DBUILD_STATIC_PLUGIN=On && \
     cmake --build build --parallel && \
     cmake --install build && \
     # cleanup
