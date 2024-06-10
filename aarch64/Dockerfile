@@ -9,7 +9,7 @@ RUN yum-config-manager --enable ol7_optional_latest && \
     yum upgrade -y && \
     yum install -y \
         # general devtools
-        devtoolset-7-gcc devtoolset-7-gcc-c++ make \
+        devtoolset-9-gcc devtoolset-9-gcc-c++ make \
         # squashfs-tools libs
         libzstd-devel \
         # Qt build tools
@@ -21,15 +21,15 @@ RUN yum-config-manager --enable ol7_optional_latest && \
         git && \
     yum clean all
 
-ARG DEVTOOLSET_ROOTPATH=/opt/rh/devtoolset-7/root
+ARG DEVTOOLSET_ROOTPATH=/opt/rh/devtoolset-9/root
 ENV PATH=/opt/qt/bin:${DEVTOOLSET_ROOTPATH}/usr/bin:${PATH}
 ENV LD_LIBRARY_PATH=${DEVTOOLSET_ROOTPATH}/usr/lib64
 
-ARG SQUASHFS_TOOLS_VERSION=4.4
+ARG SQUASHFS_TOOLS_VERSION=4.6.1
 ARG QT_MAJOR_MINOR=5.15
-ARG QT_PATCH=12
+ARG QT_PATCH=14
 ARG QT_VERSION=${QT_MAJOR_MINOR}.${QT_PATCH}
-ARG FCITX5_QT_VERSION=5.0.17
+ARG FCITX5_QT_VERSION=5.1.6
 
 # AppImage runtime
 RUN curl -L -o /opt/appimage-runtime 'https://github.com/AppImage/type2-runtime/releases/download/continuous/runtime-aarch64'
@@ -49,42 +49,23 @@ RUN mkdir -p /build/squashfs-tools && \
 # Qt 5
 RUN mkdir -p /build/qt5 && \
     cd /build/qt5 && \
-    curl -L -O "https://download.qt.io/archive/qt/${QT_MAJOR_MINOR}/${QT_VERSION}/submodules/qt{base,svg,tools,wayland}-everywhere-opensource-src-${QT_VERSION}.tar.xz" && \
-    tar xf qtbase-everywhere-opensource-src-${QT_VERSION}.tar.xz && \
-    cd qtbase-everywhere-src-${QT_VERSION} && \
+    curl -L -O "https://download.qt.io/archive/qt/${QT_MAJOR_MINOR}/${QT_VERSION}/single/qt-everywhere-opensource-src-${QT_VERSION}.tar.xz" && \
+    tar xf qt-everywhere-opensource-src-${QT_VERSION}.tar.xz && \
+    cd qt-everywhere-src-${QT_VERSION} && \
+    ls | grep ^qt | grep -vE 'qt(\.pro|base|svg|tools|wayland|translations)' | xargs rm -r && \
     ./configure \
         -prefix /opt/qt \
         -opensource -confirm-license \
         -optimize-size -static -platform linux-g++ -linker bfd \
+        -no-feature-wayland-server \
         -nomake examples -nomake tests -nomake tools -dbus-linked \
-        -qt-doubleconversion -no-glib -eventfd -inotify -iconv -no-icu -no-mimetype-database -qt-pcre -qt-zlib \
+        -qt-doubleconversion -no-glib -eventfd -inotify -iconv -no-icu -no-mimetype-database -qt-pcre -qt-zlib -no-zstd \
         -no-openssl \
         -no-cups -fontconfig -system-freetype -qt-harfbuzz -no-gtk -no-opengl -xcb-xlib \
         -xcb \
         -bundled-xcb-xinput \
         -qt-libjpeg -qt-libpng \
         -sql-sqlite -qt-sqlite && \
-    make -j$(nproc) && \
-    make install && \
-    # svg package
-    cd /build/qt5 && \
-    tar xf qtsvg-everywhere-opensource-src-${QT_VERSION}.tar.xz && \
-    cd qtsvg-everywhere-src-${QT_VERSION} && \
-    qmake . && \
-    make -j$(nproc) && \
-    make install && \
-    # tools package
-    cd /build/qt5 && \
-    tar xf qttools-everywhere-opensource-src-${QT_VERSION}.tar.xz && \
-    cd qttools-everywhere-src-${QT_VERSION} && \
-    qmake . && \
-    make -j$(nproc) && \
-    make install && \
-    # wayland package
-    cd /build/qt5 && \
-    tar xf qtwayland-everywhere-opensource-src-${QT_VERSION}.tar.xz && \
-    cd qtwayland-everywhere-src-${QT_VERSION} && \
-    qmake . && \
     make -j$(nproc) && \
     make install && \
     # cleanup
