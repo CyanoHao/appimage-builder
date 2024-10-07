@@ -1,6 +1,6 @@
 function build_host_gmp() {
-  if [ ! -d gmp-6.3.0 ]; then
-    if [ ! -f $_ASSSETS/gmp-6.3.0.tar.zst ]; then
+  if [[ ! -d gmp-6.3.0 ]]; then
+    if [[ ! -f $_ASSSETS/gmp-6.3.0.tar.zst ]]; then
       curl -L -o $_ASSSETS/gmp-6.3.0.tar.zst \
         https://ftpmirror.gnu.org/gnu/gmp/gmp-6.3.0.tar.zst
     fi
@@ -23,8 +23,8 @@ function build_host_gmp() {
 }
 
 function build_host_mpfr() {
-  if [ ! -d mpfr-4.2.1 ]; then
-    if [ ! -f "$_ASSSETS/mpfr-4.2.1.tar.xz" ]; then
+  if [[ ! -d mpfr-4.2.1 ]]; then
+    if [[ ! -f "$_ASSSETS/mpfr-4.2.1.tar.xz" ]]; then
       curl -L -o "$_ASSSETS/mpfr-4.2.1.tar.xz" \
         https://ftpmirror.gnu.org/gnu/mpfr/mpfr-4.2.1.tar.xz
     fi
@@ -48,8 +48,8 @@ function build_host_mpfr() {
 }
 
 function build_host_mpc() {
-  if [ ! -d mpc-1.3.1 ]; then
-    if [ ! -f "$_ASSSETS/mpc-1.3.1.tar.gz" ]; then
+  if [[ ! -d mpc-1.3.1 ]]; then
+    if [[ ! -f "$_ASSSETS/mpc-1.3.1.tar.gz" ]]; then
       curl -L -o "$_ASSSETS/mpc-1.3.1.tar.gz" \
         https://ftpmirror.gnu.org/gnu/mpc/mpc-1.3.1.tar.gz
     fi

@@ -1,6 +1,6 @@
 function build_cross_binutils() {
-  if [ ! -d binutils-2.43.1 ]; then
-    if [ ! -f "$_ASSSETS/binutils-2.43.1.tar.zst" ]; then
+  if [[ ! -d binutils-2.43.1 ]]; then
+    if [[ ! -f "$_ASSSETS/binutils-2.43.1.tar.zst" ]]; then
       curl -L -o "$_ASSSETS/binutils-2.43.1.tar.zst" \
         https://ftpmirror.gnu.org/gnu/binutils/binutils-2.43.1.tar.zst
     fi
@@ -18,6 +18,7 @@ function build_cross_binutils() {
       --enable-static \
       --with-static-standard-libraries \
       $( true features ) \
+      --enable-gold \
       --disable-install-libbfd \
       --disable-multilib \
       CFLAGS="-O2" CXXFLAGS="-O2" LDFLAGS="-s"
@@ -28,8 +29,8 @@ function build_cross_binutils() {
 }
 
 function build_cross_gcc_p1() {
-  if [ ! -d gcc-14.2.0 ]; then
-    if [ ! -f "$_ASSSETS/gcc-14.2.0.tar.xz" ]; then
+  if [[ ! -d gcc-14.2.0 ]]; then
+    if [[ ! -f "$_ASSSETS/gcc-14.2.0.tar.xz" ]]; then
       curl -L -o "$_ASSSETS/gcc-14.2.0.tar.xz" \
         https://ftpmirror.gnu.org/gnu/gcc/gcc-14.2.0/gcc-14.2.0.tar.xz
     fi
