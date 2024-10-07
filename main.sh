@@ -7,8 +7,7 @@ env DEBIAN_FRONTEND=noninteractive \
   apt install -y --no-install-recommends \
     bison gcc g++ m4 make meson pkgconf python3 texinfo \
     qttools5-dev-tools \
-    ca-certificates curl xz-utils zstd \
-    libdbus-1-dev libxcb1-dev
+    ca-certificates curl xz-utils zstd
 
 _ARCH=x86_64
 while [[ $# -gt 0 ]]; do
@@ -75,11 +74,17 @@ pushd "$_BUILDDIR"
   build_cross_gcc_p3
 
   build_target_expat
+  build_target_xml
   build_target_dbus
   build_target_xproto
   build_target_xau
   build_target_xcb_proto
   build_target_xcb
+  build_target_xcb_util
+  build_target_xcb_util_image
+  build_target_xcb_util_keysyms
+  build_target_xcb_util_renderutil
+  build_target_xcb_util_wm
   build_target_xkeyboard_config
   build_target_xkbcommon
 

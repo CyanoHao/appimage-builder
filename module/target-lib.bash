@@ -52,6 +52,30 @@ function build_target_expat() {
   popd
 }
 
+function build_target_xml() {
+  if [[ ! -d libxml2-2.13.4 ]]; then
+    if [[ ! -f "$_ASSSETS/libxml2-2.13.4.tar.xz" ]]; then
+      curl -L -o "$_ASSSETS/libxml2-2.13.4.tar.xz" \
+        https://download.gnome.org/sources/libxml2/2.13/libxml2-2.13.4.tar.xz
+    fi
+    tar xf "$_ASSSETS/libxml2-2.13.4.tar.xz" --no-same-owner
+  fi
+  mkdir -p libxml2-2.13.4/build
+  pushd libxml2-2.13.4/build
+  {
+    ../configure \
+      --host=$_TARGET \
+      --prefix=$_PREFIX/$_TARGET \
+      --disable-shared \
+      --enable-static \
+      --without-python \
+      CFLAGS="-O2" CXXFLAGS="-O2" LDFLAGS="-s"
+    make -j$(nproc)
+    make install
+  }
+  popd
+}
+
 function build_target_dbus() {
   if [[ ! -d dbus-1.14.10 ]]; then
     if [[ ! -f "$_ASSSETS/dbus-1.14.10.tar.xz" ]]; then
@@ -167,6 +191,121 @@ function build_target_xcb() {
   popd
 }
 
+function build_target_xcb_util() {
+  if [[ ! -d xcb-util-0.4.1 ]]; then
+    if [[ ! -f "$_ASSSETS/xcb-util-0.4.1.tar.xz" ]]; then
+      curl -L -o "$_ASSSETS/xcb-util-0.4.1.tar.xz" \
+        https://xcb.freedesktop.org/dist/xcb-util-0.4.1.tar.xz
+    fi
+    tar xf "$_ASSSETS/xcb-util-0.4.1.tar.xz" --no-same-owner
+  fi
+  mkdir -p xcb-util-0.4.1/build
+  pushd xcb-util-0.4.1/build
+  {
+    ../configure \
+      --host=$_TARGET \
+      --prefix=$_PREFIX/$_TARGET \
+      --disable-shared \
+      --enable-static \
+      CFLAGS="-O2" CXXFLAGS="-O2" LDFLAGS="-s"
+    make -j$(nproc)
+    make install
+  }
+  popd
+}
+
+function build_target_xcb_util_image() {
+  if [[ ! -d xcb-util-image-0.4.1 ]]; then
+    if [[ ! -f "$_ASSSETS/xcb-util-image-0.4.1.tar.xz" ]]; then
+      curl -L -o "$_ASSSETS/xcb-util-image-0.4.1.tar.xz" \
+        https://xcb.freedesktop.org/dist/xcb-util-image-0.4.1.tar.xz
+    fi
+    tar xf "$_ASSSETS/xcb-util-image-0.4.1.tar.xz" --no-same-owner
+  fi
+  mkdir -p xcb-util-image-0.4.1/build
+  pushd xcb-util-image-0.4.1/build
+  {
+    ../configure \
+      --host=$_TARGET \
+      --prefix=$_PREFIX/$_TARGET \
+      --disable-shared \
+      --enable-static \
+      CFLAGS="-O2" CXXFLAGS="-O2" LDFLAGS="-s"
+    make -j$(nproc)
+    make install
+  }
+  popd
+}
+
+function build_target_xcb_util_keysyms() {
+  if [[ ! -d xcb-util-keysyms-0.4.1 ]]; then
+    if [[ ! -f "$_ASSSETS/xcb-util-keysyms-0.4.1.tar.xz" ]]; then
+      curl -L -o "$_ASSSETS/xcb-util-keysyms-0.4.1.tar.xz" \
+        https://xcb.freedesktop.org/dist/xcb-util-keysyms-0.4.1.tar.xz
+    fi
+    tar xf "$_ASSSETS/xcb-util-keysyms-0.4.1.tar.xz" --no-same-owner
+  fi
+  mkdir -p xcb-util-keysyms-0.4.1/build
+  pushd xcb-util-keysyms-0.4.1/build
+  {
+    ../configure \
+      --host=$_TARGET \
+      --prefix=$_PREFIX/$_TARGET \
+      --disable-shared \
+      --enable-static \
+      CFLAGS="-O2" CXXFLAGS="-O2" LDFLAGS="-s"
+    make -j$(nproc)
+    make install
+  }
+  popd
+}
+
+function build_target_xcb_util_renderutil() {
+  if [[ ! -d xcb-util-renderutil-0.3.10 ]]; then
+    if [[ ! -f "$_ASSSETS/xcb-util-renderutil-0.3.10.tar.xz" ]]; then
+      curl -L -o "$_ASSSETS/xcb-util-renderutil-0.3.10.tar.xz" \
+        https://xcb.freedesktop.org/dist/xcb-util-renderutil-0.3.10.tar.xz
+    fi
+    tar xf "$_ASSSETS/xcb-util-renderutil-0.3.10.tar.xz" --no-same-owner
+  fi
+  mkdir -p xcb-util-renderutil-0.3.10/build
+  pushd xcb-util-renderutil-0.3.10/build
+  {
+    ../configure \
+      --host=$_TARGET \
+      --prefix=$_PREFIX/$_TARGET \
+      --disable-shared \
+      --enable-static \
+      CFLAGS="-O2" CXXFLAGS="-O2" LDFLAGS="-s"
+    make -j$(nproc)
+    make install
+  }
+  popd
+}
+
+function build_target_xcb_util_wm() {
+  if [[ ! -d xcb-util-wm-0.4.2 ]]; then
+    if [[ ! -f "$_ASSSETS/xcb-util-wm-0.4.2.tar.xz" ]]; then
+      curl -L -o "$_ASSSETS/xcb-util-wm-0.4.2.tar.xz" \
+        https://xcb.freedesktop.org/dist/xcb-util-wm-0.4.2.tar.xz
+    fi
+    tar xf "$_ASSSETS/xcb-util-wm-0.4.2.tar.xz" --no-same-owner
+  fi
+  mkdir -p xcb-util-wm-0.4.2/build
+  pushd xcb-util-wm-0.4.2/build
+  {
+    ../configure \
+      --host=$_TARGET \
+      --prefix=$_PREFIX/$_TARGET \
+      --disable-shared \
+      --enable-static \
+      CFLAGS="-O2" CXXFLAGS="-O2" LDFLAGS="-s"
+    make -j$(nproc)
+    make install
+  }
+  popd
+}
+
 function build_target_xkeyboard_config() {
   if [[ ! -d xkeyboard-config-2.43 ]]; then
     if [[ ! -f "$_ASSSETS/xkeyboard-config-2.43.tar.xz" ]]; then
@@ -177,7 +316,13 @@ function build_target_xkeyboard_config() {
   fi
   pushd xkeyboard-config-2.43
   {
-    meson --prefix $_PREFIX/$_TARGET $_MESON_CROSS build
+    meson \
+      $_MESON_CROSS \
+      --prefix $_PREFIX/$_TARGET \
+      --default-library static \
+      --prefer-static \
+      --buildtype release --strip \
+      build
     meson compile -C build
     meson install -C build
   }
@@ -194,7 +339,14 @@ function build_target_xkbcommon() {
   fi
   pushd libxkbcommon-1.7.0
   {
-    meson --prefix $_PREFIX/$_TARGET $_MESON_CROSS build
+    meson \
+      $_MESON_CROSS \
+      --prefix $_PREFIX/$_TARGET \
+      --default-library static \
+      --prefer-static \
+      -Denable-wayland=false \
+      --buildtype release --strip \
+      build
     meson compile -C build
     meson install -C build
   }
@@ -220,58 +372,58 @@ function build_target_qt() {
   mkdir -p qt-everywhere-src-5.15.15/build
   pushd qt-everywhere-src-5.15.15/build
   {
-    ../configure -recheck-all \
-      -prefix $_PREFIX/$_TARGET \
-      -hostprefix $_PREFIX \
-      $( true build option ) \
-      -opensource \
-      -confirm-license \
-      -release \
-      -static \
-      -platform linux-g++ \
-      -xplatform linux-g++ \
-      -device-option CROSS_COMPILE=$_TARGET- \
-      -ltcg \
-      -linker gold \
-      $( true build environment ) \
-      -sysroot / \
-      -no-gcc-sysroot \
-      -pkg-config \
-      $( true component selection ) \
-      -nomake examples \
-      -nomake tests \
-      -nomake tools \
-      -dbus-linked \
-      $( true core option ) \
-      -qt-doubleconversion \
-      -no-glib \
-      -eventfd \
-      -inotify \
-      -iconv \
-      -no-icu \
-      -no-mimetype-database \
-      -qt-pcre \
-      -qt-zlib \
-      -no-zstd \
-      $( true network option ) \
-      -no-openssl \
-      $( true gui, printing, widget option ) \
-      -no-cups \
-      -no-fontconfig \
-      -qt-freetype \
-      -qt-harfbuzz \
-      -no-gtk \
-      -no-opengl \
-      -xcb-xlib \
-      -xcb \
-      -bundled-xcb-xinput \
-      -qt-libjpeg \
-      -qt-libpng \
-      $( true database option ) \
-      -sql-sqlite \
-      -qt-sqlite \
-      $( true feature ) \
-      -no-feature-wayland-server
+    env PKG_CONFIG="pkg-config --static" \
+      ../configure -recheck-all \
+        -prefix $_PREFIX/$_TARGET \
+        -hostprefix $_PREFIX \
+        $( true build option ) \
+        -opensource \
+        -confirm-license \
+        -release \
+        -static \
+        -platform linux-g++ \
+        -device linux-generic-g++ \
+        -device-option CROSS_COMPILE=$_TARGET- \
+        -ltcg \
+        -linker gold \
+        $( true build environment ) \
+        -sysroot / \
+        -no-gcc-sysroot \
+        -pkg-config \
+        $( true component selection ) \
+        -nomake examples \
+        -nomake tests \
+        -nomake tools \
+        -dbus-linked \
+        $( true core option ) \
+        -qt-doubleconversion \
+        -no-glib \
+        -eventfd \
+        -inotify \
+        -iconv \
+        -no-icu \
+        -no-mimetype-database \
+        -qt-pcre \
+        -qt-zlib \
+        -no-zstd \
+        $( true network option ) \
+        -no-openssl \
+        $( true gui, printing, widget option ) \
+        -no-cups \
+        -no-fontconfig \
+        -qt-freetype \
+        -qt-harfbuzz \
+        -no-gtk \
+        -no-opengl \
+        -xcb-xlib \
+        -xcb \
+        -qt-libjpeg \
+        -qt-libpng \
+        $( true database option ) \
+        -sql-sqlite \
+        -qt-sqlite \
+        $( true feature ) \
+        -no-feature-wayland-server
   }
   popd
 }
