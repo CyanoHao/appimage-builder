@@ -5,10 +5,29 @@ set -euxo pipefail
 apt update
 env DEBIAN_FRONTEND=noninteractive \
   apt install -y --no-install-recommends \
-    bison cmake gcc g++ m4 make meson pkgconf python3 texinfo \
+    $( true === build tools === ) \
+    bison \
+    cmake \
+    g++ \
+    gcc \
+    gperf \
+    m4 \
+    make \
+    meson \
+    pkgconf \
+    python3 \
+    texinfo \
+    $( true === general utils === ) \
+    bzip2 \
+    ca-certificates \
+    curl \
+    patch \
+    xz-utils \
+    zstd \
+    $( true === host libs === ) \
     libexpat1-dev \
-    qttools5-dev-tools \
-    bzip2 ca-certificates curl xz-utils zstd
+    $( true === host qt tools === ) \
+    qttools5-dev-tools
 
 _ARCH=x86_64
 while [[ $# -gt 0 ]]; do
@@ -63,6 +82,7 @@ _MESON_CROSS="--cross-file $_ROOTDIR/meson/$_TARGET.txt"
 . module/target-lib-e.bash
 . module/target-lib-f.bash
 . module/target-lib-g.bash
+. module/target-lib-h.bash
 . module/target-lib-j.bash
 . module/target-lib-m.bash
 . module/target-lib-p.bash
@@ -76,54 +96,58 @@ mkdir -p assets "$_BUILDDIR"
 
 pushd "$_BUILDDIR"
 {
-  # build_host_gmp
-  # build_host_mpfr
-  # build_host_mpc
+  build_host_gmp
+  build_host_mpfr
+  build_host_mpc
 
-  # build_host_wayland_scanner
+  build_host_wayland_scanner
 
   export PATH=$_PREFIX/bin:$PATH
   export PKG_CONFIG_LIBDIR=$_PREFIX/$_TARGET/lib/pkgconfig:$_PREFIX/$_TARGET/share/pkgconfig
 
-  # build_cross_linux_headers
-  # build_cross_binutils
-  # build_cross_gcc_p1
-  # build_target_musl_p1
-  # build_cross_gcc_p2
-  # build_target_musl_p2
-  # build_cross_gcc_p3
+  build_cross_linux_headers
+  build_cross_binutils
+  build_cross_gcc_p1
+  build_target_musl_p1
+  build_cross_gcc_p2
+  build_target_musl_p2
+  build_cross_gcc_p3
 
-  # build_target_double_conversion
-  # build_target_jpeg_turbo
-  # build_target_expat
-  # build_target_xml
-  # build_target_dbus
-  # build_target_zlib
-  # build_target_sqlite
-  # build_target_zstd
-  # build_target_pcre
-  # build_target_ffi
-  # build_target_glib
-  # build_target_xfixes
-  # build_target_xi
-  # build_target_xtst
-  # build_target_at_spi
-  # build_target_xproto
-  # build_target_xau
-  # build_target_xcb_proto
-  # build_target_xcb
-  # build_target_xcb_util
-  # build_target_xcb_util_image
-  # build_target_xcb_util_keysyms
-  # build_target_xcb_util_renderutil
-  # build_target_xcb_util_wm
-  # build_target_xtrans
-  # build_target_x11
-  # build_target_xext
-  # build_target_xkeyboard_config
-  # build_target_xkbcommon
-  # build_target_png
-  # build_target_wayland
+  build_target_double_conversion
+  build_target_jpeg_turbo
+  build_target_expat
+  build_target_xml
+  build_target_dbus
+  build_target_zlib
+  build_target_sqlite
+  build_target_zstd
+  build_target_pcre
+  build_target_ffi
+  build_target_glib
+  build_target_xproto
+  build_target_xau
+  build_target_xcb_proto
+  build_target_xcb
+  build_target_xcb_util
+  build_target_xcb_util_image
+  build_target_xcb_util_keysyms
+  build_target_xcb_util_renderutil
+  build_target_xcb_util_wm
+  build_target_xtrans
+  build_target_x11
+  build_target_xext
+  build_target_xfixes
+  build_target_xi
+  build_target_xtst
+  build_target_at_spi
+  build_target_xkeyboard_config
+  build_target_xkbcommon
+  build_target_png
+  build_target_freetype_decycle
+  build_target_harfbuzz
+  build_target_freetype
+  build_target_fontconfig
+  build_target_wayland
 
   build_target_qt
 }

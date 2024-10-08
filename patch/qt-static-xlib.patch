@@ -1,7 +1,7 @@
-diff --git a/mkspecs/common/linux.conf b/mkspecs/common/linux.conf
+diff --git a/qtbase/mkspecs/common/linux.conf b/qtbase/mkspecs/common/linux.conf
 index 544cc22715..a158f4ca77 100644
---- a/mkspecs/common/linux.conf
-+++ b/mkspecs/common/linux.conf
+--- a/qtbase/mkspecs/common/linux.conf
++++ b/qtbase/mkspecs/common/linux.conf
 @@ -28,7 +28,7 @@ QMAKE_LIBDIR_OPENVG     =
  
  QMAKE_LIBS              =

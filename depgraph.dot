@@ -5,11 +5,11 @@ digraph {
   double_conversion;
   expat;
   ffi;
-  fontconfig -> { expat, freetype };
+  fontconfig -> { expat, freetype, gperf };
   freetype -> { harfbuzz, png, zlib };
+  "freetype[decycle]";
   glib -> { ffi, pcre, zlib };
-  harfbuzz -> { "freetype[decycle]", glib, graphite };
-  "freetype[decycle]" -> { png, zlib };
+  harfbuzz -> { "freetype[decycle]" };
   png -> { zlib };
   qt5 -> { dbus, double_conversion, at_spi, fontconfig, freetype, glib, harfbuzz, jpeg_turbo, pcre, png, sqlite, wayland, x11, xcb, xcb_util_image, xcb_util_keysyms, xcb_util_renderutil, xcb_util_wm, xext, zlib, zstd };
   sqlite -> { zlib };

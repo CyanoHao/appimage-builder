@@ -19,20 +19,21 @@ function build_target_qt() {
   pushd qt-everywhere-src-5.15.15/build
   {
     env PKG_CONFIG="pkg-config --static" \
-      ../configure -recheck \
+      ../configure \
         -prefix $_PREFIX/$_TARGET \
         -hostprefix $_PREFIX \
         $( true === configure meta ===) \
+        -recheck \
         -no-feature-wayland-server \
         $( true === build options === ) \
         -opensource \
         -confirm-license \
-        -release \
+        -debug \
         -static \
         -platform linux-g++ \
         -device linux-generic-g++ \
         -device-option CROSS_COMPILE=$_TARGET- \
-        -ltcg \
+        -no-ltcg \
         -linker gold \
         $( true === build environment === ) \
         -sysroot / \
@@ -70,8 +71,8 @@ function build_target_qt() {
         $( true === database options === ) \
         -sql-sqlite \
         -system-sqlite
-    # make -j$(nproc)
-    # make install
+    make -j$(nproc)
+    make install
   }
   popd
 }
