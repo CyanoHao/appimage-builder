@@ -1,0 +1,32 @@
+digraph {
+  ROOT -> { qt5 };
+  at_spi -> { dbus, glib, x11, xi, xtst, xproto };
+  dbus -> { expat };
+  double_conversion;
+  expat;
+  ffi;
+  fontconfig -> { expat, freetype };
+  freetype -> { harfbuzz, png, zlib };
+  glib -> { ffi, pcre, zlib };
+  harfbuzz -> { "freetype[decycle]", glib, graphite };
+  "freetype[decycle]" -> { png, zlib };
+  png -> { zlib };
+  qt5 -> { dbus, double_conversion, at_spi, fontconfig, freetype, glib, harfbuzz, jpeg_turbo, pcre, png, sqlite, wayland, x11, xcb, xcb_util_image, xcb_util_keysyms, xcb_util_renderutil, xcb_util_wm, xext, zlib, zstd };
+  sqlite -> { zlib };
+  wayland -> { expat, ffi, xml };
+  x11 -> { xcb, xproto, xtrans };
+  xcb -> { xau, xdmcp, xcb_proto, xproto };
+  xcb_util -> { xcb, xproto };
+  xcb_util_image -> { xcb, xcb_util, xproto };
+  xcb_util_keysyms -> { xcb, xproto };
+  xcb_util_renderutil -> { xcb, xproto };
+  xcb_util_wm -> { xcb, xproto };
+  xext -> { x11, xproto };
+  xfixes -> { x11, xproto };
+  xi -> { x11, xext, xfixes, xproto };
+  xproto;
+  xtrans;
+  xtst -> { x11, xext, xi, xproto };
+  zlib;
+  zstd -> { zlib };
+}

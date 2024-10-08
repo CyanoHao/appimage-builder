@@ -1,0 +1,13 @@
+diff --git a/mkspecs/common/linux.conf b/mkspecs/common/linux.conf
+index 544cc22715..a158f4ca77 100644
+--- a/mkspecs/common/linux.conf
++++ b/mkspecs/common/linux.conf
+@@ -28,7 +28,7 @@ QMAKE_LIBDIR_OPENVG     =
+ 
+ QMAKE_LIBS              =
+ QMAKE_LIBS_DYNLOAD      = -ldl
+-QMAKE_LIBS_X11          = -lXext -lX11 -lm
++QMAKE_LIBS_X11          = -lXext -lX11 -lxcb -lXau -lm
+ QMAKE_LIBS_EGL          = -lEGL
+ QMAKE_LIBS_OPENGL       = -lGL
+ QMAKE_LIBS_OPENGL_ES2   = -lGLESv2
