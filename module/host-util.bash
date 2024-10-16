@@ -1,24 +1,13 @@
-function build_host_wayland_scanner() {
-  if [[ ! -d wayland-1.23.1 ]]; then
-    if [[ ! -f $_ASSETS/wayland-1.23.1.tar.xz ]]; then
-      curl -L -o $_ASSETS/wayland-1.23.1.tar.xz \
-        https://gitlab.freedesktop.org/wayland/wayland/-/releases/1.23.1/downloads/wayland-1.23.1.tar.xz
-    fi
-    tar -xf $_ASSETS/wayland-1.23.1.tar.xz --no-same-owner
+function build_host_zstd() {
+  if [[ ! -d $_BUILDDIR/zstd-1.5.6 ]]; then
+    tar -C $_BUILDDIR -xf assets/zstd-1.5.6.tar.gz
   fi
-  pushd wayland-1.23.1
+  pushd $_BUILDDIR/zstd-1.5.6/build/meson
   {
     meson setup \
-      --prefix $_PREFIX \
-      --libdir=lib \
+      --prefix /opt/qt \
       --default-library static \
       --prefer-static \
-      $( true === features === ) \
-      -Ddocumentation=false \
-      -Ddtd_validation=false \
-      -Dlibraries=false \
-      -Dscanner=true \
-      -Dtests=false \
       --buildtype release --strip \
       build-host
     meson compile -C build-host
