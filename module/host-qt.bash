@@ -1,6 +1,11 @@
 function build_host_qtbase() {
   if [[ ! -d $_BUILDDIR/qtbase-everywhere-src-6.8.0 ]]; then
     tar -C $_BUILDDIR -xf assets/qtbase-everywhere-src-6.8.0.tar.xz --no-same-owner
+    pushd $_BUILDDIR/qtbase-everywhere-src-6.8.0
+    {
+      patch -Np1 <$_PATCHDIR/qt-c-static-assert.patch
+    }
+    popd
   fi
   mkdir -p $_BUILDDIR/qtbase-everywhere-src-6.8.0/build-host
   pushd $_BUILDDIR/qtbase-everywhere-src-6.8.0/build-host
@@ -28,7 +33,7 @@ function build_host_qtbase() {
       -no-glib \
       -no-icu \
       -qt-pcre \
-      -qt-zlib \
+      -system-zlib \
       $( true === network options === ) \
       -no-ssl \
       -no-openssl \
@@ -49,7 +54,6 @@ function build_host_qtbase() {
       $( true === database options === ) \
       -sql-sqlite \
       -qt-sqlite
-    bash
     cmake --build . --parallel
     cmake --install .
   }
@@ -88,6 +92,13 @@ function build_host_xcb() {
       CFLAGS=-O2 CXXFLAGS=-O2 LDFLAGS=-s
     make -j$(nproc)
     make install
+    # merge libs -- workaround for Qt feature test
+    ar -M <<<"
+      create /opt/qt/lib/libxcb.a
+      addlib src/.libs/libxcb.a
+      addlib /opt/qt/lib/libXau.a
+      save
+      end"
   }
   popd
 }

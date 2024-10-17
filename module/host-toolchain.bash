@@ -211,7 +211,7 @@ function build_host_zlib() {
   mkdir -p $_BUILDDIR/zlib-1.3.1/build-host
   pushd $_BUILDDIR/zlib-1.3.1/build-host
   {
-    env CFLAGS=-O2 LDFLAGS=-s \
+    env CFLAGS="-O2 -fPIC" LDFLAGS=-s \
       ../configure \
         --prefix=/opt/qt \
         --static

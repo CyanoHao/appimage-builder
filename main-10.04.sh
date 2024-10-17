@@ -4,6 +4,7 @@ set -euxo pipefail
 
 alias nproc="getconf _NPROCESSORS_ONLN"
 
+_PATCHDIR=$PWD/patch
 _BUILDDIR=$PWD/build/x86_64
 _OLDPATH=$PATH
 
@@ -64,37 +65,38 @@ check_source
 install_tools
 mkdir -p $_BUILDDIR
 
-build_bootstrap_binutils
-build_bootstrap_gmp
-build_bootstrap_mpfr
-build_bootstrap_mpc
-build_bootstrap_gcc
+# build_bootstrap_binutils
+# build_bootstrap_gmp
+# build_bootstrap_mpfr
+# build_bootstrap_mpc
+# build_bootstrap_gcc
 export PATH=/opt/bootstrap/bin:$_OLDPATH
 
-build_host_binutils
-build_host_gmp
-build_host_mpfr
-build_host_mpc
-build_host_gcc
+# build_host_binutils
+# build_host_gmp
+# build_host_mpfr
+# build_host_mpc
+# build_host_gcc
 export PATH=/opt/qt/bin:$_OLDPATH
 
-build_host_pkgconf
-build_host_cmake
-build_host_ninja
-build_host_python
-build_host_meson
-build_host_zstd
+# build_host_pkgconf
+# build_host_zlib
+# build_host_cmake
+# build_host_ninja
+# build_host_python
+# build_host_meson
+# build_host_zstd
 
-build_host_xorgproto
-build_host_xau
-build_host_xcb_proto
-build_host_xcb
-build_host_xcb_util
-build_host_xcb_util_image
-build_host_xcb_util_keysyms
-build_host_xcb_util_renderutil
-build_host_xcb_util_cursor
-build_host_xcb_util_wm
-build_host_xml
-build_host_xkbcommon
+# build_host_xorgproto
+# build_host_xau
+# build_host_xcb_proto
+# build_host_xcb
+# build_host_xcb_util
+# build_host_xcb_util_image
+# build_host_xcb_util_keysyms
+# build_host_xcb_util_renderutil
+# build_host_xcb_util_cursor
+# build_host_xcb_util_wm
+# build_host_xml
+# build_host_xkbcommon
 build_host_qtbase

@@ -1,0 +1,14 @@
+diff --git a/src/corelib/global/qglobal.h b/src/corelib/global/qglobal.h
+index 2d70e82370..376c96e928 100644
+--- a/src/corelib/global/qglobal.h
++++ b/src/corelib/global/qglobal.h
+@@ -17,6 +17,9 @@
+ #endif
+ #ifndef __ASSEMBLER__
+ #  include <assert.h>
++#  if !defined (__cplusplus) && __STDC_VERSION__ <= 201710L && !defined(static_assert)
++#    define static_assert _Static_assert
++#  endif
+ #  include <stdbool.h>
+ #  include <stddef.h>
+ #endif
