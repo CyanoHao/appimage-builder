@@ -11,7 +11,6 @@ function build_bootstrap_binutils() {
       --libdir=/opt/bootstrap/lib \
       --disable-shared \
       --enable-static \
-      --with-static-standard-libraries \
       --disable-multilib \
       CFLAGS=-O2 CXXFLAGS=-O2 LDFLAGS=-s
     make -j$(nproc)
@@ -33,7 +32,6 @@ function build_bootstrap_gcc() {
       --libdir=/opt/bootstrap/lib \
       --disable-shared \
       --enable-static \
-      --with-static-standard-libraries \
       $( true === features === ) \
       --disable-bootstrap \
       --enable-default-pie \

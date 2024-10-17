@@ -4,7 +4,8 @@ set -euxo pipefail
 
 mkdir -p assets
 if [[ ! -f assets/binutils-2.35.2.tar.xz ]]; then
-  # new enough to support LTO, and old enough to build with glibc in ~2010
+  # >= 2.35 (gcc lto -> binutils)
+  # < ? (tested 2.43) (binutils -> glibc)
   curl -L -o assets/binutils-2.35.2.tar.xz http://ftpmirror.gnu.org/binutils/binutils-2.35.2.tar.xz
 fi
 sha256sum -c checksum/binutils-2.35.2.tar.xz.sha256
@@ -49,10 +50,17 @@ if [[ ! -f assets/ninja-1.12.1.tar.gz ]]; then
 fi
 sha256sum -c checksum/ninja-1.12.1.tar.gz.sha256
 
-if [[ ! -f assets/Python-3.13.0.tar.xz ]]; then
-  curl -L -o assets/Python-3.13.0.tar.xz https://www.python.org/ftp/python/3.13.0/Python-3.13.0.tar.xz
+if [[ ! -f assets/pkgconf-2.3.0.tar.xz ]]; then
+  curl -L -o assets/pkgconf-2.3.0.tar.xz https://distfiles.ariadne.space/pkgconf/pkgconf-2.3.0.tar.xz
 fi
-sha256sum -c checksum/Python-3.13.0.tar.xz.sha256
+sha256sum -c checksum/pkgconf-2.3.0.tar.xz.sha256
+
+if [[ ! -f assets/Python-3.12.7.tar.xz ]]; then
+  # >= 3.5 (meson -> python)
+  # < 3.13 (python -> glibc)
+  curl -L -o assets/Python-3.12.7.tar.xz https://www.python.org/ftp/python/3.12.7/Python-3.12.7.tar.xz
+fi
+sha256sum -c checksum/Python-3.12.7.tar.xz.sha256
 
 for module in base svg tools translations; do
   if [[ ! -f assets/qt$module-everywhere-src-6.8.0.tar.xz ]]; then
@@ -60,6 +68,11 @@ for module in base svg tools translations; do
   fi
   sha256sum -c checksum/qt$module-everywhere-src-6.8.0.tar.xz.sha256
 done
+
+if [[ ! -f assets/zlib-1.3.1.tar.xz ]]; then
+  curl -L -o assets/zlib-1.3.1.tar.xz https://github.com/madler/zlib/releases/download/v1.3.1/zlib-1.3.1.tar.xz
+fi
+sha256sum -c checksum/zlib-1.3.1.tar.xz.sha256
 
 if [[ ! -f assets/zstd-1.5.6.tar.gz ]]; then
   curl -L -o assets/zstd-1.5.6.tar.gz http://github.com/facebook/zstd/releases/download/v1.5.6/zstd-1.5.6.tar.gz

@@ -20,7 +20,7 @@ function check_source() {
     [[ ! -f assets/mpc-1.3.1.tar.gz ]] || ! sha256sum -c checksum/mpc-1.3.1.tar.gz.sha256 ||
     [[ ! -f assets/mpfr-4.2.1.tar.xz ]] || ! sha256sum -c checksum/mpfr-4.2.1.tar.xz.sha256 ||
     [[ ! -f assets/ninja-1.12.1.tar.gz ]] || ! sha256sum -c checksum/ninja-1.12.1.tar.gz.sha256 ||
-    [[ ! -f assets/Python-3.13.0.tar.xz ]] || ! sha256sum -c checksum/Python-3.13.0.tar.xz.sha256 ||
+    [[ ! -f assets/Python-3.12.7.tar.xz ]] || ! sha256sum -c checksum/Python-3.12.7.tar.xz.sha256 ||
     [[ ! -f assets/qtbase-everywhere-src-6.8.0.tar.xz ]] || ! sha256sum -c checksum/qtbase-everywhere-src-6.8.0.tar.xz.sha256 ||
     [[ ! -f assets/qtsvg-everywhere-src-6.8.0.tar.xz ]] || ! sha256sum -c checksum/qtsvg-everywhere-src-6.8.0.tar.xz.sha256 ||
     [[ ! -f assets/qttools-everywhere-src-6.8.0.tar.xz ]] || ! sha256sum -c checksum/qttools-everywhere-src-6.8.0.tar.xz.sha256 ||
@@ -42,6 +42,8 @@ function install_tools() {
       build-essential \
       m4 \
       texinfo \
+      $( true === library === ) \
+      zlib1g-dev \
       $( true === general === ) \
       ca-certificates \
       curl \
@@ -59,6 +61,7 @@ build_bootstrap_mpc
 build_bootstrap_gcc
 export PATH=/opt/bootstrap/bin:$_OLDPATH
 
+build_host_pkgconf
 build_host_binutils
 build_host_gmp
 build_host_mpfr
