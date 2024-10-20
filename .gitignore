@@ -2,3 +2,5 @@ assets
 build
 pkg
 RedPanda-CPP-*
+
+__pycache__/
