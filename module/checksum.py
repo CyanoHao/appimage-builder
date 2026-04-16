@@ -85,7 +85,7 @@ CHECKSUMS = {
 
   'xtrans-1.6.0.tar.xz': 'faafea166bf2451a173d9d593352940ec6404145c5d1da5c213423ce4d359e92',
 
-  'zlib-1.3.1.tar.gz': '9a93b2b7dfdac77ceba5a558a580e74667dd6fede4585b91eefb60f03b72df23',
+  'zlib-ng-2.3.3.tar.gz': 'f9c65aa9c852eb8255b636fd9f07ce1c406f061ec19a2e7d508b318ca0c907d1',
 
   'zstd-1.5.7.tar.zst': '5b331d961d6989dc21bb03397fc7a2a4d86bc65a14adc5ffbbce050354e30fd2',
 }

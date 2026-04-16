@@ -505,7 +505,7 @@ def _xtrans(ver: BranchProfile, paths: ProjectPaths, download_only: bool):
   _patch_done(paths.src_dir.xtrans)
 
 def _z(ver: BranchProfile, paths: ProjectPaths, download_only: bool):
-  url = f'https://zlib.net/fossils/{paths.src_arx.z.name}'
+  url = f'https://github.com/zlib-ng/zlib-ng/archive/refs/tags/{ver.z}.tar.gz'
   _validate_and_download(paths.src_arx.z, url)
   if download_only:
     return

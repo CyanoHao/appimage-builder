@@ -40,7 +40,7 @@ class BranchVersions:
   xml: str = '2.15.2'
   xorg_proto: str = '2025.1'
   xtrans: str = '1.6.0'
-  z: str = '1.3.1'
+  z: str = '2.3.3'
   zstd: str = '1.5.7'
 
   def __init__(

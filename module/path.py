@@ -194,7 +194,7 @@ class ProjectPaths:
       xml = self.build_dir / f'libxml2-{ver.xml}',
       xorg_proto = self.build_dir / f'xorgproto-{ver.xorg_proto}',
       xtrans = self.build_dir / f'xtrans-{ver.xtrans}',
-      z = self.build_dir / f'zlib-{ver.z}',
+      z = self.build_dir / f'zlib-ng-{ver.z}',
       zstd = self.build_dir / f'zstd-{ver.zstd}',
     )
 
@@ -239,7 +239,7 @@ class ProjectPaths:
       xml = self.assets_dir / f'libxml2-{ver.xml}.tar.xz',
       xorg_proto = self.assets_dir / f'xorgproto-{ver.xorg_proto}.tar.xz',
       xtrans = self.assets_dir / f'xtrans-{ver.xtrans}.tar.xz',
-      z = self.assets_dir / f'zlib-{ver.z}.tar.gz',
+      z = self.assets_dir / f'zlib-ng-{ver.z}.tar.gz',
       zstd = self.assets_dir / f'zstd-{ver.zstd}.tar.zst',
     )
 

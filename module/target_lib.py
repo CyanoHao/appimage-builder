@@ -127,14 +127,15 @@ def _z(ver: BranchProfile, paths: ProjectPaths, config: argparse.Namespace):
   ensure(build_dir)
 
   with overlayfs_ro('/usr/local', toolchain_layers(paths)):
-    os.environ['CHOST'] = ver.target
-    configure(build_dir, [
-      f'--prefix=/usr/local/{ver.target}',
-      '--static',
+    cmake_config(paths.src_dir.z, build_dir, [
+      f'-DCMAKE_TOOLCHAIN_FILE={paths.cmake_cross_file}',
+      f'-DCMAKE_INSTALL_PREFIX=/usr/local/{ver.target}',
+      '-DZLIB_COMPAT=ON',
+      '-DBUILD_SHARED_LIBS=OFF',
+      '-DBUILD_TESTING=OFF',
     ])
-    del os.environ['CHOST']
-    make_default(build_dir, config.jobs)
-    make_destdir_install(build_dir, paths.layer_target.z)
+    cmake_build(build_dir, config.jobs)
+    cmake_destdir_install(build_dir, paths.layer_target.z)
 
 def _zstd(ver: BranchProfile, paths: ProjectPaths, config: argparse.Namespace):
   v_musl = Version(ver.musl)
