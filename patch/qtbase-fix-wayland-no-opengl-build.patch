@@ -1,0 +1,25 @@
+diff --git a/src/plugins/platforms/wayland/hardwareintegration/qwaylandclientbufferintegration_p.h b/src/plugins/platforms/wayland/hardwareintegration/qwaylandclientbufferintegration_p.h
+index f8de871dfc0..1a6e917b214 100644
+--- a/src/plugins/platforms/wayland/hardwareintegration/qwaylandclientbufferintegration_p.h
++++ b/src/plugins/platforms/wayland/hardwareintegration/qwaylandclientbufferintegration_p.h
+@@ -52,9 +52,9 @@ public:
+     virtual bool supportsWindowDecoration() const { return false; }
+ 
+     virtual QWaylandWindow *createEglWindow(QWindow *window) = 0;
+-    virtual QPlatformOpenGLContext *createPlatformOpenGLContext(const QSurfaceFormat &glFormat, QPlatformOpenGLContext *share) const = 0;
+     virtual bool canCreatePlatformOffscreenSurface() const { return false; }
+ #if QT_CONFIG(opengl)
++    virtual QPlatformOpenGLContext *createPlatformOpenGLContext(const QSurfaceFormat &glFormat, QPlatformOpenGLContext *share) const = 0;
+     virtual QOpenGLContext *createOpenGLContext(EGLContext context, EGLDisplay contextDisplay, QOpenGLContext *shareContext) const = 0;
+     virtual QPlatformOffscreenSurface *createPlatformOffscreenSurface(QOffscreenSurface *surface) const { Q_UNUSED(surface); return nullptr; }
+ #endif
+@@ -65,7 +65,9 @@ public:
+         EglContext
+     };
+     virtual void *nativeResource(NativeResource /*resource*/) { return nullptr; }
++#if QT_CONFIG(opengl)
+     virtual void *nativeResourceForContext(NativeResource /*resource*/, QPlatformOpenGLContext */*context*/) { return nullptr; }
++#endif
+ };
+ 
+ }

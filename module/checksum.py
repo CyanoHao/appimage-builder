@@ -1,73 +1,71 @@
 
 CHECKSUMS = {
-  'binutils-2.45.1.tar.zst': '5249c7eb75aed113091aae5418903109e4651d81cb974d6aec274607dfe988bc',
+  'binutils-2.46.0.tar.zst': '8ba6a3c4d29eae4dc1bdffb29d1e99b2a658c3f4c6a23ea1c507e9fa47db2898',
 
   'dbus-1.16.2.tar.xz': '0ba2a1a4b16afe7bceb2c07e9ce99a8c2c3508e5dec290dbb643384bd6beb7e2',
 
-  'expat-2.7.3.tar.xz': '71df8f40706a7bb0a80a5367079ea75d91da4f8c65c58ec59bcdfbf7decdab9f',
+  'expat-2.7.5.tar.xz': '1032dfef4ff17f70464827daa28369b20f6584d108bc36f17ab1676e1edd2f91',
 
-  'fcitx5-qt-5.1.12.tar.gz': '1852a15635961a6b1d109f401fddf96d5cee0c8d45fe4ee73c585c6c53115c5a',
+  'fcitx5-qt-5.1.13.tar.gz': '74b2c43ca865ec9ede257bcd3bdadafc20f571900cb2440a4488335e4d4e91cc',
 
   'fontconfig-2.17.1.tar.xz': '9f5cae93f4fffc1fbc05ae99cdfc708cd60dfd6612ffc0512827025c026fa541',
 
-  'freetype-2.14.1.tar.xz': '32427e8c471ac095853212a37aef816c60b42052d4d9e48230bab3bdf2936ccc',
+  'freetype-2.14.3.tar.xz': '36bc4f1cc413335368ee656c42afca65c5a3987e8768cc28cf11ba775e785a5f',
 
-  'fuse-3.18.1.tar.gz': 'dd395c88f29c7540bbdd0b830260ab8092ccb241bb6e66f603643f715fb9322c',
+  'fuse-3.18.2.tar.gz': 'f01de85717e20adf5f98aff324acd85dd73d61a5ca3834d573dcf0bd6e54a298',
 
   'gcc-15.2.0.tar.xz': '438fd996826b0c82485a29da03a72d71d6e3541a83ec702df4271f6fe025d24e',
 
   'gmp-6.3.0.tar.zst': '7f55d73f472c29cc14d7fa985f3654d48829415b649eaf61646b7b33f2a80e27',
 
-  'harfbuzz-12.3.0.tar.xz': '8660ebd3c27d9407fc8433b5d172bafba5f0317cb0bb4339f28e5370c93d42b7',
+  'harfbuzz-14.1.0.tar.xz': 'ee0eb3a1da2c5a28147f12dff55f6c7d60aeeeb29ac7ef334eabe84c8476c105',
 
-  'libX11-1.8.12.tar.xz': 'fa026f9bb0124f4d6c808f9aef4057aad65e7b35d8ff43951cef0abe06bb9a9a',
+  'libX11-1.8.13.tar.xz': '69606f485c2c07c14ef64f75b7bb326d48587af33795d9ab3e607c0b5f94f11c',
 
   'libXau-1.0.12.tar.xz': '74d0e4dfa3d39ad8939e99bda37f5967aba528211076828464d2777d477fc0fb',
 
   'libffi-3.5.2.tar.gz': 'f3a3082a23b37c293a4fcd1053147b371f2ff91fa7ea1b2a52e335676bac82dc',
 
-  'libpng-1.6.53.tar.xz': '1d3fb8ccc2932d04aa3663e22ef5ef490244370f4e568d7850165068778d98d4',
+  'libpng-1.6.57.tar.xz': 'd10c20d7171569804cae8dfc13ba6dcd0662c41ed39d43d4d429314aafb10a80',
 
   'libxcb-1.17.0.tar.xz': '599ebf9996710fea71622e6e184f3a8ad5b43d0e5fa8c4e407123c88a59a6d55',
 
   'libxkbcommon-xkbcommon-1.13.1.tar.gz': 'aeb951964c2f7ecc08174cb5517962d157595e9e3f38fc4a130b91dc2f9fec18',
 
-  'libxml2-2.15.1.tar.xz': 'c008bac08fd5c7b4a87f7b8a71f283fa581d80d80ff8d2efd3b26224c39bc54c',
+  'libxml2-2.15.2.tar.xz': 'c8b9bc81f8b590c33af8cc6c336dbff2f53409973588a351c95f1c621b13d09d',
 
-  'linux-6.18.3.tar.xz': '7a8879167b89c4bae077d6f39c4f2130769f05dbdad2aad914adab9afb7d7f9a',
+  'linux-7.0.tar.xz': 'bb7f6d80b387c757b7d14bb93028fcb90f793c5c0d367736ee815a100b3891f0',
 
-  'mimalloc-2.2.4.tar.gz': '754a98de5e2912fddbeaf24830f982b4540992f1bab4a0a8796ee118e0752bda',
-  'mimalloc-3.0.11.tar.gz': 'c2cadf7f0ff007f63be3b6cf99855abfc5aaff7f34bdd408b405d5f7b63f8561',
+  'mimalloc-3.3.0.tar.gz': 'cf227295c307efc6f16e90c485595f9bb91c5a5532a3000f81f08907f8fc56a2',
 
-  'mpc-1.3.1.tar.gz': 'ab642492f5cf882b74aa0cb730cd410a81edcdbec895183ce930e706c1c759b8',
+  'mpc-1.4.0.tar.xz': '3210b3a546b1cb00c296ca360891d7740ee6ff06deb02a27a35b20cd3c0bb1a5',
 
   'mpfr-4.2.2.tar.xz': 'b67ba0383ef7e8a8563734e2e889ef5ec3c3b898a01d00fa0a6869ad81c6ce01',
 
   'musl-1.1.24.tar.gz': '1370c9a812b2cf2a7d92802510cca0058cc37e66a7bedd70051f0a34015022a3',
-  'musl-1.2.5.tar.gz': 'a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4',
+  'musl-1.2.6.tar.gz': 'd585fd3b613c66151fc3249e8ed44f77020cb5e6c1e635a616d3f9f82460512a',
 
   'pkgconf-pkgconf-2.5.1.tar.gz': '79721badcad1987dead9c3609eb4877ab9b58821c06bdacb824f2c8897c11f2a',
 
   'qtbase-everywhere-src-6.8.3.tar.xz': '56001b905601bb9023d399f3ba780d7fa940f3e4861e496a7c490331f49e0b80',
-  'qtbase-everywhere-src-6.10.1.tar.xz': '5a6226f7e23db51fdc3223121eba53f3f5447cf0cc4d6cb82a3a2df7a65d265d',
+  'qtbase-everywhere-src-6.11.0.tar.xz': '231ad85979864d914dc9568a1b71c91d6cf20d7b2021d059103bf0eb51cb755e',
 
   'qtsvg-everywhere-src-6.8.3.tar.xz': '35eb516460f00f264eb504baa253432384351cf23fb9980a5857190e8deef438',
-  'qtsvg-everywhere-src-6.10.1.tar.xz': 'c02f355a58f3bbcf404a628bf488b6aeb2d84a94c269afdb86f6e529343ab01f',
+  'qtsvg-everywhere-src-6.11.0.tar.xz': 'dfa8d653be07087d9407ed4a4ebae847f8953e0b7abd829f089803ab652a30e6',
 
   'qttools-everywhere-src-6.8.3.tar.xz': '02a4e219248b94f1333df843d25763f35251c1074cdc4fb5bda67d340f8c8b3a',
-  'qttools-everywhere-src-6.10.1.tar.xz': '8148408380ffea03101a26305c812b612ea30dbc07121e58707601522404d49b',
+  'qttools-everywhere-src-6.11.0.tar.xz': 'cfb1993d7a10848965b01b9cf33a54b8a4ba4e5e3a6d28d59483e73f10d9fc76',
 
   'qttranslations-everywhere-src-6.8.3.tar.xz': 'c3c61d79c3d8fe316a20b3617c64673ce5b5519b2e45535f49bee313152fa531',
-  'qttranslations-everywhere-src-6.10.1.tar.xz': '8e49a2df88a12c376a479ae7bd272a91cf57ebb4e7c0cf7341b3565df99d2314',
+  'qttranslations-everywhere-src-6.11.0.tar.xz': '54f48b2fe4316892ff930195f170a5385644acc7393505f3155c066b8e1ffe56',
 
   'qtwayland-everywhere-src-6.8.3.tar.xz': '20fe385887d21190165a3180c17dcfc8b9a0e1da4ec76865b6334bdc709994b0',
-  'qtwayland-everywhere-src-6.10.1.tar.xz': '49bf6db800227a6b2c971f4c5d03dd1e81297e7ffb296ce4a96437304f27cb13',
 
   'squashfuse-0.6.1.tar.gz': '7b18a58c40a3161b5c329ae925b72336b5316941f906b446b8ed6c5a90989f8c',
 
   'type2-runtime-caf24f9f712084686bfc24a70b75e50df0aefb9c.tar.gz': '944e9bb5c587818c54fec3231067ec03d67b8062c68278f4ca99d504216117be',
 
-  'wayland-1.24.0.tar.xz': '82892487a01ad67b334eca83b54317a7c86a03a89cfadacfef5211f11a5d0536',
+  'wayland-1.25.0.tar.xz': 'c065f040afdff3177680600f249727e41a1afc22fccf27222f15f5306faa1f03',
 
   'xcb-proto-1.17.0.tar.xz': '2c1bacd2110f4799f74de6ebb714b94cf6f80fb112316b1219480fd22562148c',
 

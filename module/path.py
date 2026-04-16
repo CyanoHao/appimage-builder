@@ -213,7 +213,7 @@ class ProjectPaths:
       harfbuzz = self.assets_dir / f'harfbuzz-{ver.harfbuzz}.tar.xz',
       linux = self.assets_dir / f'linux-{ver.linux}.tar.xz',
       mimalloc = self.assets_dir / f'mimalloc-{ver.mimalloc}.tar.gz',
-      mpc = self.assets_dir / f'mpc-{ver.mpc}.tar.gz',
+      mpc = self.assets_dir / f'mpc-{ver.mpc}.tar.xz',
       mpfr = self.assets_dir / f'mpfr-{ver.mpfr}.tar.xz',
       musl = self.assets_dir / f'musl-{ver.musl}.tar.gz',
       pkgconf = self.assets_dir / f'pkgconf-pkgconf-{ver.pkgconf}.tar.gz',

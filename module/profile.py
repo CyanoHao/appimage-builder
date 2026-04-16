@@ -2,31 +2,31 @@ import argparse
 from typing import Optional
 
 class BranchVersions:
-  mimalloc: str
   musl: str
   qt: str
 
   appimage_runtime: str = 'caf24f9f712084686bfc24a70b75e50df0aefb9c'
-  binutils: str = '2.45.1'
+  binutils: str = '2.46.0'
   dbus: str = '1.16.2'
-  expat: str = '2.7.3'
-  fcitx_qt: str = '5.1.12'
+  expat: str = '2.7.5'
+  fcitx_qt: str = '5.1.13'
   ffi: str = '3.5.2'
   fontconfig: str = '2.17.1'
-  freetype: str = '2.14.1'
-  fuse: str = '3.18.1'
+  freetype: str = '2.14.3'
+  fuse: str = '3.18.2'
   gcc: str = '15.2.0'
   gmp: str = '6.3.0'
-  harfbuzz: str = '12.3.0'
-  linux: str = '6.18.3'
-  meson: str = '1.10.0'
-  mpc: str = '1.3.1'
+  harfbuzz: str = '14.1.0'
+  linux: str = '7.0'
+  meson: str = '1.11.0'
+  mimalloc: str = '3.3.0'
+  mpc: str = '1.4.0'
   mpfr: str = '4.2.2'
   pkgconf: str = '2.5.1'
-  png: str = '1.6.53'
+  png: str = '1.6.57'
   squashfuse: str = '0.6.1'
-  wayland: str = '1.24.0'
-  x: str = '1.8.12'
+  wayland: str = '1.25.0'
+  x: str = '1.8.13'
   xau: str = '1.0.12'
   xcb: str = '1.17.0'
   xcb_proto: str = '1.17.0'
@@ -37,7 +37,7 @@ class BranchVersions:
   xcb_util_renderutil: str = '0.3.10'
   xcb_util_wm: str = '0.4.2'
   xkbcommon: str = '1.13.1'
-  xml: str = '2.15.1'
+  xml: str = '2.15.2'
   xorg_proto: str = '2025.1'
   xtrans: str = '1.6.0'
   z: str = '1.3.1'
@@ -46,11 +46,9 @@ class BranchVersions:
   def __init__(
     self,
 
-    mimalloc: str,
     musl: str,
     qt: str,
   ):
-    self.mimalloc = mimalloc
     self.musl = musl
     self.qt = qt
 
@@ -92,13 +90,10 @@ class BranchProfile(BranchVersions):
 
 BRANCHES = {
   'main': BranchVersions(
-    mimalloc = '3.0.11',
-    musl = '1.2.5',
-    qt = '6.10.1',
+    musl = '1.2.6',
+    qt = '6.11.0',
   ),
   'time32': BranchVersions(
-    # mimalloc 3.0 fails to meta allocate tld on i686 (exceeds size limit)
-    mimalloc = '2.2.4',
     musl = '1.1.24',
     qt = '6.8.3',
   ),

@@ -309,8 +309,8 @@ def _qtbase(ver: BranchProfile, paths: ProjectPaths, download_only: bool):
     return
 
   if _check_and_extract(paths.src_dir.qtbase, paths.src_arx.qtbase):
-    if v >= Version('6.9.0'):
-      _patch(paths.src_dir.qtbase, paths.patch_dir / 'qtbase-define-loong-hwcap-flags.patch')
+    if v == Version('6.11.0'):
+      _patch(paths.src_dir.qtbase, paths.patch_dir / 'qtbase-fix-wayland-no-opengl-build.patch')
     _patch_done(paths.src_dir.qtbase)
 
 def _qtsvg(ver: BranchProfile, paths: ProjectPaths, download_only: bool):
